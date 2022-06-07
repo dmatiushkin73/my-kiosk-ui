@@ -1,0 +1,30 @@
+$idle-bg: #37474F;
+$idle-color: #FFFDE7;
+$main-bg: #FAFAFA;
+
+.fullscreen {
+    width: 100%;
+    height: 100%;
+}
+
+.idle-bg {
+    background-color: $idle-bg;
+}
+
+.idle-text {
+    color: $idle-color;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.main-bg {
+    background-color: $main-bg;
+}
+
+.side-panel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}

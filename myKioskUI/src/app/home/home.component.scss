@@ -1,0 +1,122 @@
+@import '../app.component.scss';
+
+$hh-bg: black;
+$hh-color: #FFB74D;
+$hh-height: 25vh;
+$hh-font-size: 10vh;
+$top-slider-margin-top: 7vh;
+$bottom-slider-margin-top: 2vh;
+$bottom-slider-margin-bottom: 10px;
+$sliders-margin-left: 0;
+$logo-height: 70%;
+$banner-top-offset: 3vh;
+$banner-side-offset: 3vh;
+$banner-height: 27vh;
+$banner-width: 30vw;
+
+.home-header {
+    width: 100%;
+    height: $hh-height;
+    background-color: $hh-bg;
+    color: $hh-color;
+    justify-content: center;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.home-content {
+    width: 100%;
+    height: calc(100vh - $hh-height - $top-slider-margin-top - $bottom-slider-margin-top - $bottom-slider-margin-bottom);
+}
+
+.home-header h1 {
+    font-size: $hh-font-size;
+    margin-left: 10px;
+    text-shadow: 2px 2px 2px #F57C00;
+}
+
+.logo-img {
+    height: $logo-height;
+    width: auto;
+}
+
+.left-banner {
+    position: absolute;
+    top: $banner-top-offset;
+    left: $banner-side-offset;
+    width: $banner-width;
+    height: $banner-height;
+    z-index: 2;
+    background-color: white;
+    overflow: hidden;
+}
+
+.right-banner {
+    position: absolute;
+    top: $banner-top-offset;
+    right: $banner-side-offset;
+    width: $banner-width;
+    height: $banner-height;
+    z-index: 2;
+    background-color: white;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel1 {
+    margin-top: $top-slider-margin-top;
+    margin-left: $sliders-margin-left;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+.carousel2 {
+    margin-top: $bottom-slider-margin-top;
+    margin-left: $sliders-margin-left;
+    margin-right: 0;
+    margin-bottom: $bottom-slider-margin-bottom;
+}
+
+.mat-card h4 {
+    margin: 0;
+    margin-bottom: 5px;
+    background-color: $hh-color;
+    padding: 5px;
+}
+
+.mat-card hr {
+    margin: 0;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.slide-title {
+    position: absolute;
+    bottom: 0;
+    left:0;
+    background-color: black;
+    color: $hh-color;
+    font-weight: bolder;
+    width: 100%;
+    padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.slider-wrap {
+    height: calc((100vh - $hh-height - $top-slider-margin-top - $bottom-slider-margin-top - $bottom-slider-margin-bottom)/2 - 3em - 10px);
+    width: 100%;
+}
+
+.spinner-wrap {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}

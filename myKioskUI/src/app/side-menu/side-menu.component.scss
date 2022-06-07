@@ -1,0 +1,39 @@
+@import '../app.component.scss';
+
+$menu-btn-bg: #B3E5FC;
+
+.menu-btn-container {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.menu-btn {
+     width: 200px;
+     background-color: $menu-btn-bg;
+     font-size: 1.5rem;
+}
+
+.mat-raised-button {
+    padding: 10px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.cart-btn {
+    width: 80px;
+    height: 80px;
+    background-color: $menu-btn-bg;
+}
+
+.menu-btn-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+}
+
+.cart-btn-icon {
+    width: 48px;
+    height: 48px;
+}

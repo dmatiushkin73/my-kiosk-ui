@@ -1,0 +1,30 @@
+@import '../app.component.scss';
+
+$policy-bg: #558B2F;
+$policy-color: white;
+$contacts-bg: #283593;
+$contacts-color: white;
+
+.side-btn {
+    position: absolute;
+    left: 0;
+    transform-origin: 0 0;
+    transform: rotate(270deg);
+    width: 100px;
+    letter-spacing: 1px;
+}
+.policy {
+    top: 75%;
+    background-color: $policy-bg;
+    color: $policy-color;
+}
+
+.contacts {
+    top: 100%;
+    background-color: $contacts-bg;
+    color: $contacts-color;
+}
+
+.mat-flat-button {
+    border-radius: 0px;
+}
