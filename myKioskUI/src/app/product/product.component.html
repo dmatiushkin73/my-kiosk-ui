@@ -20,7 +20,7 @@
                             <span class="price crossed" *ngIf="sale">{{price}}</span>
                             <span class="compare-price" *ngIf="sale">{{comparePrice}}</span>
                         </div>
-                        <div fxFlex="30%" class="contents-wrap" *ngIf="hasVariants">
+                        <div fxFlex="auto" class="contents-wrap" *ngIf="hasVariants">
                             <div fxLayout="row">
                                 <div fxFlex *ngFor="let optName of optionNames">
                                     <mat-form-field appearance="outline" >
@@ -48,7 +48,7 @@
                         <div fxFlex="30%">
                             <p class="descr">{{product.description}}</p>
                         </div>
-                        <div fxFlex></div>
+                        <div fxFlex="grow"></div>
                     </div>
                 </div>
             </mat-card>

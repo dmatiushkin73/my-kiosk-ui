@@ -74,7 +74,6 @@ export class ProductComponent implements OnInit {
           values: [],
           variantId: variant.id
         }
-        console.log(variant);
         for (var j = 0; j < variant.options.length; j++) {
           if (this.options[variant.options[j].name]) {
             this.options[variant.options[j].name].values.push({
@@ -89,6 +88,9 @@ export class ProductComponent implements OnInit {
                 value: value.toString()
               }],
               currentValue: ''
+            }
+            if (i == 0) {
+              this.options[variant.options[j].name].currentValue = this.options[variant.options[j].name].values[0].value;
             }
             this.optionNames.push(variant.options[j].name);
           }
@@ -112,15 +114,15 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  onOptionChanged(optName: string, v: any) {
-    console.log(v);
-    this.options[optName].currentValue = v.value;
+  onOptionChanged(optName: string, v: string) {
+    this.options[optName].currentValue = v;
     for (var i = 0; i < this.opt2var.length; i++) {
       var j = 0;
       var match = true;
       for (const opt in this.options) {
         const option = this.options[opt];
-        match &&= this.opt2var[i].values[j] == parseInt(option.values[j].value);
+        match &&= this.opt2var[i].values[j] == parseInt(option.currentValue);
+        j += 1;
       }
       if (match) {
         const ind = this.varIds.indexOf(this.opt2var[i].variantId);
@@ -131,6 +133,7 @@ export class ProductComponent implements OnInit {
           this.variantInd = ind;
           this.updateProperties();
         }
+        break;
       }
     }
   }
