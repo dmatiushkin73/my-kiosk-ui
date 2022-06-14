@@ -1,0 +1,60 @@
+<div class="fullscreen main-bg">
+    <app-header></app-header>
+    <div fxLayout="row" class="content">
+        <div fxFlex="5%" class="compensator">
+            <app-extras></app-extras>
+        </div>
+        <div fxFlex="75%" class="product-wrap">
+            <mat-card fxLayout="row" *ngIf="product" [@appear]>
+                <div fxFlex="40%">
+                    <carousel [cellsToShow]="1" [dots]="true" [height]="400">
+                        <div class="carousel-cell" *ngFor="let image of product.images">
+                            <img src="{{image}}" alt="image">
+                        </div>
+                    </carousel>
+                </div>
+                <div fxFlex="60%">
+                    <div fxLayout="column" class="info-wrap">
+                        <div fxFlex="15%" class="contents-wrap">
+                            <span class="price" *ngIf="!sale">{{price}}</span>
+                            <span class="price crossed" *ngIf="sale">{{price}}</span>
+                            <span class="compare-price" *ngIf="sale">{{comparePrice}}</span>
+                        </div>
+                        <div fxFlex="30%" class="contents-wrap" *ngIf="hasVariants">
+                            <div fxLayout="row">
+                                <div fxFlex *ngFor="let optName of optionNames">
+                                    <mat-form-field appearance="outline" >
+                                        <mat-label>Select {{optName}}</mat-label>
+                                        <mat-select [(value)]="options[optName].currentValue" (selectionChange)="onOptionChanged(optName,$event.value)">
+                                            <mat-option *ngFor="let v of options[optName].values" [value]="v.value">
+                                                {{v.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxFlex="15%" class="contents-wrap">
+                            <button mat-raised-button class="add-to-cart-btn" *ngIf="available">
+                                <mat-icon svgIcon="add-to-cart" class="menu-btn-icon"></mat-icon>
+                                ADD TO CART
+                            </button>
+                            <button mat-raised-button class="buy-now-btn" *ngIf="available">
+                                <mat-icon svgIcon="buy-now" class="menu-btn-icon"></mat-icon>
+                                BUY NOW
+                            </button>
+                            <span class="sold-out" *ngIf="!available">Sold out</span>
+                        </div>
+                        <div fxFlex="30%">
+                            <p class="descr">{{product.description}}</p>
+                        </div>
+                        <div fxFlex></div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <div fxFlex="20%" class="compensator">
+            <app-side-menu></app-side-menu>
+        </div>
+    </div>
+</div>

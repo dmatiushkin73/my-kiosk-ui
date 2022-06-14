@@ -92,13 +92,6 @@ export interface BrandDetails {
     logo: string;
 }
 
-/*  export interface UIListItem {
-    id: number;
-    title: string;
-    price: string;
-    image: string;
-  }*/
-  
 export interface CollectionData {
     id: number;
     name: string;
@@ -117,7 +110,7 @@ export interface ProductVariantData {
     priceFormatted: string;
     comparePriceFormatted: string;
     image: string;
-    available?: number;
+    available: number;
     options: ProductOption[];
 }
   

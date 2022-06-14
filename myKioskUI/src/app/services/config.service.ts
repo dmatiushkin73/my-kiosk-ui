@@ -276,4 +276,33 @@ export class ConfigService {
     }
     return undefined;
   }
+
+  getCollections(): CollectionData[] {
+    return this.collections;
+  }
+
+  getProducts(): ProductData[] {
+    return this.products;
+  }
+
+  getProductsByCollectionId(id: Number): ProductData[] {
+    const profile = this.profiles[this.currentProfile];
+    if (profile) {
+      var prods: ProductData[] = [];
+      for (var i = 0; i < profile.collections.length; i++) {
+        if (profile.collections[i].id == id) {
+          const coll = profile.collections[i];
+          for (var j = 0; j < this.products.length; j++) {
+            if (coll.products.indexOf(this.products[j].id) != -1) {
+              prods.push(this.products[j]);
+            }
+          }
+        }
+      }
+      return prods;
+    }
+    else {
+      return [];
+    }
+  }
 }

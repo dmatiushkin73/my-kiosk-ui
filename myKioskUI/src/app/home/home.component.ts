@@ -109,23 +109,119 @@ export class HomeComponent implements OnInit {
     this.bottomSlider = this.configService.getBottomSlider();
   }
 
-  getCollectionName(id: Number): String {
+  private getCollectionName(id: Number): String {
     const collection: CollectionData | undefined = this.configService.getCollectionById(id);
     return collection ? collection.name : "";
   }
 
-  getCollectionImage(id: Number): String {
+  private getCollectionImage(id: Number): String {
     const collection: CollectionData | undefined = this.configService.getCollectionById(id);
     return collection ? collection.image : "";
   }
 
-  getProductName(id: Number): String {
+  private getProductName(id: Number): String {
     const product: ProductData | undefined = this.configService.getProductById(id);
     return product? product.name : "";
   }
 
-  getProductImage(id: Number): String {
+  private getProductImage(id: Number): String {
     const product: ProductData | undefined = this.configService.getProductById(id);
     return product ? product.images[0] : "";
+  }
+
+  getTopSliderImage(id: Number): String {
+    if (this.topSlider) {
+      return this.topSlider.type == 'collection' ? this.getCollectionImage(id) :
+                                                   this.getProductImage(id);
+    }
+    else {
+      return '';
+    }
+  }
+
+  getTopSliderTitle(id: Number): String {
+    if (this.topSlider) {
+      return this.topSlider.type == 'collection' ? this.getCollectionName(id) :
+                                                   this.getProductName(id);
+    }
+    else {
+      return '';
+    }
+  }
+
+  getBottomSliderImage(id: Number): String {
+    if (this.bottomSlider) {
+      return this.bottomSlider.type == 'collection' ? this.getCollectionImage(id) :
+                                                      this.getProductImage(id);
+    }
+    else {
+      return '';
+    }
+  }
+
+  getBottomSliderTitle(id: Number): String {
+    if (this.bottomSlider) {
+      return this.bottomSlider.type == 'collection' ? this.getCollectionName(id) :
+                                                      this.getProductName(id);
+    }
+    else {
+      return '';
+    }
+  }
+
+  getTopSliderLink(id: Number): String {
+    if (this.topSlider) {
+      if (this.topSlider.type == 'collection') {
+        return "/collections/" + id;
+      }
+      else {
+        return "/products/" + id;
+      }
+    }
+    else {
+      return '#';
+    }
+  }
+
+  getBottomSliderLink(id: Number): String {
+    if (this.bottomSlider) {
+      if (this.bottomSlider.type == 'collection') {
+        return "/collections/" + id;
+      }
+      else {
+        return "/products/" + id;
+      }
+    }
+    else {
+      return '#';
+    }
+  }
+
+  getLeftBannerLink(): String {
+    if (this.leftBanner) {
+      if (this.leftBanner.type == 'collection') {
+        return "/collections/" + this.leftBanner.id;
+      }
+      else {
+        return "/products/" + this.leftBanner.id;
+      }
+    }
+    else {
+      return '#';
+    }
+  }
+
+  getRightBannerLink(): String {
+    if (this.rightBanner) {
+      if (this.rightBanner.type == 'collection') {
+        return "/collections/" + this.rightBanner.id;
+      }
+      else {
+        return "/products/" + this.rightBanner.id;
+      }
+    }
+    else {
+      return '#';
+    }
   }
 }

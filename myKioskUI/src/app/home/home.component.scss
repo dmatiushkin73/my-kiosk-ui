@@ -69,6 +69,11 @@ $banner-width: 30vw;
     height: auto;
 }
 
+.side-panel {
+    height: calc(100vh - $hh-height);
+    max-height: calc(100vh - $hh-height);
+}
+
 .carousel1 {
     margin-top: $top-slider-margin-top;
     margin-left: $sliders-margin-left;

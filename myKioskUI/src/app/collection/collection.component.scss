@@ -1,0 +1,51 @@
+@import '../app.component.scss';
+
+$h-bg: black;
+$h-color: #FFB74D;
+$h-height: 15vh;
+$sides-pad-top: 10vh;
+
+.content {
+    width: 100%;
+    height: 100%;
+    padding-top: $h-height;
+}
+
+.compensator {
+    padding-top: $sides-pad-top;
+}
+
+.collection-products-wrap {
+    overflow: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tile-img-wrap {
+    overflow: hidden;
+}
+
+.tile-img-wrap img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.tile-title {
+    background-color: $h-bg;
+    color: $h-color;
+    text-align: center;
+    padding: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.mat-card {
+    padding: 5px;
+    max-height: 100%;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+}
