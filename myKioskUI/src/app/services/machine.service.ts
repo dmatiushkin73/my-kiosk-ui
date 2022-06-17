@@ -17,7 +17,7 @@ export class MachineService {
     if (environment.simulation) {
       setTimeout(() => { this.machineStatus = MACHINE_STATUS.AVAILABLE;
         this.machineStatus$.next(this.machineStatus);
-      }, 5000);
+      }, 4000);
     }
   }
 

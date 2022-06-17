@@ -13,6 +13,9 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatListModule } from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { InitComponent } from './init/init.component';
@@ -27,6 +30,7 @@ import { GlobalsService } from './services/globals.service';
 import { MachineService } from './services/machine.service';
 import { PreviousRouteService } from './services/previous-route.service';
 import { ConfigService } from './services/config.service';
+import { CartService } from './services/cart.service';
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 
@@ -34,6 +38,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { ProductsComponent } from './products/products.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ProductComponent } from './product/product.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,8 @@ import { ProductComponent } from './product/product.component';
     HeaderComponent,
     ProductsComponent,
     CollectionComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -64,13 +70,20 @@ import { ProductComponent } from './product/product.component';
     MatGridListModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatBadgeModule,
+    MatDialogModule,
+    MatListModule,
     IvyCarouselModule
   ],
   providers: [
     GlobalsService,
     MachineService,
     PreviousRouteService,
-    ConfigService
+    ConfigService,
+    CartService
+  ],
+  entryComponents: [
+    CartComponent
   ],
   bootstrap: [AppComponent]
 })

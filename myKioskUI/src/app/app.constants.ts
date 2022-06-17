@@ -1,5 +1,5 @@
 // time in sec
-export const INACTIVITY_TIME = 30;
+export const INACTIVITY_TIME = 90;
 export const TRANSACTION_LIFE_TIME = 60;
 export const INACTIVITY_CONFIRM_TIME = 10;
 

@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   simulation: true,
+  locale: 'en',
+  currency: '$',
+  currencyCode: 'USD',
   serverAddress: 'http://localhost:3000',
   urlPaymentPortal: 'https://dev-west-shopping.jabiledgeretail.com'
 };

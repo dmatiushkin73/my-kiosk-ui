@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { ProductData } from '../models/interfaces';
 import { ConfigService } from '../services/config.service';
+import { CartService } from '../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { appear } from '../app.animation';
 
@@ -46,6 +47,7 @@ export class ProductComponent implements OnInit {
   constructor(private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
     private configService: ConfigService,
+    private cartService: CartService,
     private route: ActivatedRoute) {
       iconRegistry.addSvgIcon('add-to-cart', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/to_cart.svg'));
       iconRegistry.addSvgIcon('buy-now', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/buy_now.svg'));
@@ -135,6 +137,12 @@ export class ProductComponent implements OnInit {
         }
         break;
       }
+    }
+  }
+
+  addToCart() {
+    if (this.product) {
+      this.cartService.addItemToCart(this.product.name, this.product.variants[this.variantInd]);
     }
   }
 }

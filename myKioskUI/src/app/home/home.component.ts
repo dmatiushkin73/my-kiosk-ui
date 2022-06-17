@@ -3,6 +3,7 @@ import { GlobalsService } from '../services/globals.service';
 import { PreviousRouteService } from '../services/previous-route.service';
 import { MachineService } from '../services/machine.service';
 import { ConfigService } from '../services/config.service';
+import { SessionService } from '../services/session.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Banner, BrandDetails, Slider, CollectionData, ProductData } from '../models/interfaces';
 import { appear } from '../app.animation';
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     private prevRouteService: PreviousRouteService,
     private machineService: MachineService,
     private configService: ConfigService,
+    private sessionService: SessionService,
     private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class HomeComponent implements OnInit {
       .then(() => {
         console.log("Configuration is loaded");
         this.loaded = true;
+        this.sessionService.startSession();
       })
       .catch((err) => {
         console.log("Error occured during configuration loading: ", err);

@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div fxFlex="15%" class="contents-wrap">
-                            <button mat-raised-button class="add-to-cart-btn" *ngIf="available">
+                            <button mat-raised-button class="add-to-cart-btn" *ngIf="available" (click)="addToCart()">
                                 <mat-icon svgIcon="add-to-cart" class="menu-btn-icon"></mat-icon>
                                 ADD TO CART
                             </button>
