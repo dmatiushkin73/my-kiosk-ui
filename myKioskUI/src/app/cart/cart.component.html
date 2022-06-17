@@ -1,0 +1,19 @@
+<h2 mat-dialog-title class="main-bg">Shopping Cart</h2>
+<mat-dialog-content>
+    <mat-list *ngIf="cartContents">
+
+    </mat-list>
+    <div class="totals-sect" *ngIf="cartContents">
+    
+    </div>
+    <div class="msg-sect" *ngIf="!cartContents">
+        <h4 class="text-center empty">Shopping cart is empty</h4>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="menu-btn" *ngIf="cartContents">CLEAR CART</button>
+    <button mat-raised-button class="menu-btn" mat-dialog-close>CLOSE</button>
+    <button mat-raised-button class="menu-btn"  *ngIf="cartContents" mat-dialog-close="checkout">CHECKOUT</button>
+</mat-dialog-actions>
+
+

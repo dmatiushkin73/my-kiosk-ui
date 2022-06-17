@@ -1,0 +1,44 @@
+@import '../app.component.scss';
+
+$menu-btn-bg: #B3E5FC;
+
+.totals-sect {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.msg-sect {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.msg-sect h4 {
+    margin: 0;
+}
+
+.toolbar-sect-empty {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar-sect {
+    width: 100%;
+    align-items: center;
+}
+
+.empty {
+    font-style: italic;
+}
+
+.menu-btn {
+    background-color: $menu-btn-bg;
+}
+
+.mat-dialog-container {
+    background-color: $main-bg;
+}
