@@ -8,6 +8,7 @@ export const environment = {
   locale: 'en',
   currency: '$',
   currencyCode: 'USD',
+  inactivity: false,
   serverAddress: 'http://localhost:3000',
   urlPaymentPortal: 'https://dev-west-shopping.jabiledgeretail.com'
 };

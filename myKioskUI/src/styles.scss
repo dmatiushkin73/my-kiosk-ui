@@ -2,12 +2,20 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 $primary-color: #FFB74D;
+$main-bg: #FAFAFA;
+$errmsg-bg: #E91E63;
+$msg-bg: #673AB7;
 
 html, body { height: 100%; }
 body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.errmsg-panel {
+    background-color: $errmsg-bg;
+    color: white;
+}
+
 .msg-panel {
-    background-color: #E91E63;
+    background-color: $msg-bg;
     color: white;
 }
 
@@ -19,4 +27,12 @@ body { margin: 0; padding: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
 
 .mat-fab .mat-button-wrapper {
     padding: 0 !important;
+}
+
+.mat-dialog-container {
+    background-color: $main-bg;
+}
+
+.flex-spacer {
+    flex: 1 1 auto;
 }

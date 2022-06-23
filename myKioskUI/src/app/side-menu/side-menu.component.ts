@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
@@ -11,12 +11,13 @@ import { CartComponent } from '../cart/cart.component';
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss']
 })
-export class SideMenuComponent implements OnInit {
+export class SideMenuComponent implements OnInit, OnDestroy {
 
   collectionsEnabled: boolean = true;
   productsEnabled: boolean = true;
   productsInCart = 0;
   cartBadgeHidden = true;
+  cartDialogRef?: MatDialogRef<CartComponent>;
 
   constructor(private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
@@ -55,10 +56,16 @@ export class SideMenuComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.cartDialogRef) {
+      this.cartDialogRef.close();
+    }
+  }
+
   onCartClick() {
-    this.dialog.open(CartComponent, {
-      width: "60vw", 
-      minHeight: "20vh",
+    this.cartDialogRef = this.dialog.open(CartComponent, {
+      width: "70vw", 
+      minHeight: "25vh",
       maxHeight: "80vh"
     });
   }

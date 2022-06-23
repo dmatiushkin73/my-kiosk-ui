@@ -130,4 +130,21 @@ export interface CartData {
     price: number;
     quantity: number;
     totalPrice: string;
+    available: number;
+    incEnabled: boolean;
+    decEnabled: boolean;
+}
+
+export interface CartItem {
+    variantId: number;
+    amount: number;
+}
+
+export interface ResponseResult {
+    message: string;
+}
+
+export interface VariantUpdate {
+    variantId: number;
+    available: number;
 }

@@ -5,6 +5,7 @@ import { ProductData } from '../models/interfaces';
 import { ConfigService } from '../services/config.service';
 import { CartService } from '../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { appear } from '../app.animation';
 
 interface Item {
@@ -48,7 +49,8 @@ export class ProductComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private configService: ConfigService,
     private cartService: CartService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar) {
       iconRegistry.addSvgIcon('add-to-cart', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/to_cart.svg'));
       iconRegistry.addSvgIcon('buy-now', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/buy_now.svg'));
   }
@@ -62,6 +64,20 @@ export class ProductComponent implements OnInit {
             this.buildOptions();
             this.variantInd = 0;
             this.updateProperties();
+        }
+      }
+    });
+    this.configService.watchAvailabilityChange().subscribe({
+      next: (v) => {
+        if (this.product) {
+          for (var i = 0; i < this.product.variants.length; i++) {
+            var variant = this.product.variants[i];
+            if (variant.id == v.variantId) {
+              variant.available = v.available;
+              this.available = variant.available > 0;
+              break;
+            }
+          }
         }
       }
     });
@@ -140,9 +156,26 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  addToCart() {
+  async addToCart() {
     if (this.product) {
-      this.cartService.addItemToCart(this.product.name, this.product.variants[this.variantInd]);
+      let v = await this.cartService.addItemToCart(this.product.name, this.product.variants[this.variantInd]);
+      if (v) {
+        const msg = `${this.cartService.composeVariantName(this.product.name, this.product.variants[this.variantInd].options)} added to the Shopping Cart`;
+        this.snackBar.open(msg, undefined, {
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            duration: 2000,
+            panelClass: 'msg-panel'
+        });
+      }
+      else {
+        this.snackBar.open(this.configService.getLastErrMsg(), undefined, {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 2000,
+          panelClass: 'errmsg-panel'
+        });
+      }
     }
   }
 }

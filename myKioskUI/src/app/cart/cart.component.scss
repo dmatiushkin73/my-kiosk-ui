@@ -1,12 +1,19 @@
 @import '../app.component.scss';
 
 $menu-btn-bg: #B3E5FC;
+$checkout-btn-bg: #C5E1A5;
+$cost-color: #D84315;
+$item-bg: #ECEFF1;
 
 .totals-sect {
     width: 100%;
     align-items: center;
     display: flex;
     justify-content: flex-end;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    border-top: 1px solid black;
 }
 
 .msg-sect {
@@ -22,6 +29,7 @@ $menu-btn-bg: #B3E5FC;
 
 .toolbar-sect-empty {
     width: 100%;
+    margin-top: 10px;
     align-items: center;
     justify-content: center;
 }
@@ -37,8 +45,72 @@ $menu-btn-bg: #B3E5FC;
 
 .menu-btn {
     background-color: $menu-btn-bg;
+    width: 180px;
+    font-size: 1.2rem;
 }
 
-.mat-dialog-container {
-    background-color: $main-bg;
+.checkout-btn {
+    background-color: $checkout-btn-bg;
+}
+
+h2 {
+    border-bottom: 1px solid;
+    margin: 0;
+}
+
+.mat-raised-button {
+    padding: 10px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.menu-btn-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+}
+
+.prod-name {
+    font-size: 1.1rem;
+    padding-left: 5px;
+    font-weight: 500;
+}
+
+.prod-cost {
+    color: $cost-color;
+    border: 1px solid $cost-color;
+    border-radius: 50%;
+    padding: 7px;
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.quantity {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.cart-item {
+    background-color: $item-bg;
+    margin-bottom: 5px;
+}
+
+.trash-btn-icon {
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+}
+
+.total-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.total-value {
+    font-size: 1.1rem;
+    font-weight: bold;
 }

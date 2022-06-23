@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Brand, UiModel, BrandDetails, Banner, Slider, ProfileDetails, CollectionData, ProductData } from '../models/interfaces';
+import { Brand, UiModel, BrandDetails, Banner, Slider, ProfileDetails, CollectionData, ProductData, VariantUpdate } from '../models/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { GlobalsService } from './globals.service';
 import { handleHttpError } from '../shared/utils';
 import { environment } from 'src/environments/environment';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,6 @@ export class ConfigService {
   private brandApi = '/brand-info';
   private collectionApi = '/collections';
   private productApi = '/products';
-  private cartApi = '/cart';
   private dispense = '/dispense';
   private pickup = '/pickup';
   private transactionId = '/transaction-id';
@@ -27,11 +27,13 @@ export class ConfigService {
   private profiles: { [key: string]: ProfileDetails} = {};
   private collections: CollectionData[] = [];
   private products: ProductData[] = [];
+  private availabilityChange$: Subject<VariantUpdate>;
 
   private lastErrorMsg = "";
 
   constructor(private http: HttpClient,
     private globalsService: GlobalsService) {
+      this.availabilityChange$ = new Subject<VariantUpdate>();
   }
 
   reset() {
@@ -303,6 +305,27 @@ export class ConfigService {
     }
     else {
       return [];
+    }
+  }
+
+  watchAvailabilityChange(): Subject<VariantUpdate> {
+    return this.availabilityChange$;
+  }
+
+  updateProductVariantAvailability(variantId: number, amount: number) {
+    for (var i = 0; i < this.products.length; i++) {
+      const product = this.products[i];
+      for (var j = 0; j < product.variants.length; j++) {
+        var variant = product.variants[j];
+        if (variant.id == variantId) {
+          variant.available += amount;
+          this.availabilityChange$.next({
+            variantId: variantId,
+            available: variant.available
+          });
+          return;
+        }
+      }
     }
   }
 }

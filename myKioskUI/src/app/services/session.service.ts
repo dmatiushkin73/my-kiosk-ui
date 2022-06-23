@@ -5,6 +5,7 @@ import { CartService } from './cart.service';
 import { MachineService } from './machine.service';
 import { GlobalsService } from './globals.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,9 @@ export class SessionService {
   }
 
   startSession() {
-    this.inactivityCnt = INACTIVITY_TIME;
-    this.inactivityEnabled = true;
+    if (environment.inactivity) {
+      this.inactivityCnt = INACTIVITY_TIME;
+      this.inactivityEnabled = true;
+    }
   }
 }

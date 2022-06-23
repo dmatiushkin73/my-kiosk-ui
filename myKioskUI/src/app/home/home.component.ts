@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
         horizontalPosition: 'center',
         verticalPosition: 'top',
         duration: 2000,
-        panelClass: 'msg-panel'
+        panelClass: 'errmsg-panel'
       });
     }
     else {
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
         horizontalPosition: 'center',
         verticalPosition: 'top',
         duration: 2000,
-        panelClass: 'msg-panel'
+        panelClass: 'errmsg-panel'
       });
     }
     else {
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
           horizontalPosition: 'center',
           verticalPosition: 'top',
           duration: 2000,
-          panelClass: 'msg-panel'
+          panelClass: 'errmsg-panel'
         });
       }
       console.log("Requesting products");
@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit {
           horizontalPosition: 'center',
           verticalPosition: 'top',
           duration: 2000,
-          panelClass: 'msg-panel'
+          panelClass: 'errmsg-panel'
         });
       }
       this.configService.useDefaultProfile();
