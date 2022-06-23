@@ -21,22 +21,11 @@ $item-bg: #ECEFF1;
     align-items: center;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .msg-sect h4 {
     margin: 0;
-}
-
-.toolbar-sect-empty {
-    width: 100%;
-    margin-top: 10px;
-    align-items: center;
-    justify-content: center;
-}
-
-.toolbar-sect {
-    width: 100%;
-    align-items: center;
 }
 
 .empty {
