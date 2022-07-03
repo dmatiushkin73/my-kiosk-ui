@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
-import { CartData, ProductVariantData, ProductOption, CartItem, ResponseResult } from '../models/interfaces';
+import { CartData, ProductVariantData, ProductOption, CartItem, ResponseResult, TransactionIdResult } from '../models/interfaces';
 import { RESPONSE } from '../app.constants';
 import { Observable, of, Subject } from 'rxjs';
 import { formatCurrency } from '@angular/common';
@@ -50,8 +50,11 @@ class NumberOfItems {
 export class CartService {
 
   private cartApi = '/cart';
+  private transactionIdApi = '/transaction-id';
   private cartContents: CartData[] = [];
   private numOfCartItems!: NumberOfItems;
+
+  private lastErrorMsg = "";
 
   constructor(private configService: ConfigService,
     private globalsService: GlobalsService,
@@ -322,5 +325,26 @@ export class CartService {
       total += (item.price * item.quantity);
     }
     return formatCurrency(total/100, environment.locale, environment.currency, environment.currencyCode);
+  }
+
+  async getTransactionId(): Promise<string> {
+    return new Promise<string>((resolve) => {
+      this.http.get<TransactionIdResult>(`${environment.serverAddress}${this.transactionIdApi}`,
+                                         this.globalsService.getHttpReadOptions())
+      .subscribe({
+        next: (v) => {
+          resolve(v.transactionId);
+        },
+        error: (err) => {
+          console.log(handleHttpError("retrieve", "Transaction ID", err));
+          this.lastErrorMsg = "Failed to initiate payment session";
+          resolve("");
+        }
+      });
+    });
+  }
+
+  getLastErrMsg(): string {
+    return this.lastErrorMsg;
   }
 }

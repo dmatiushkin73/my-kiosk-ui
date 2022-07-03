@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CartComponent } from '../cart/cart.component';
+import { CART_DLG_SIZES } from '../app.constants';
 
 @Component({
   selector: 'app-side-menu',
@@ -64,9 +65,10 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   onCartClick() {
     this.cartDialogRef = this.dialog.open(CartComponent, {
-      width: "70vw", 
-      minHeight: "25vh",
-      maxHeight: "80vh"
+      width: CART_DLG_SIZES.width, 
+      minHeight: CART_DLG_SIZES.minHeight,
+      maxHeight: CART_DLG_SIZES.maxHeight,
+      data: {buyNow: false}
     });
   }
 }

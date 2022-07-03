@@ -1,0 +1,34 @@
+@import '../app.component.scss';
+
+$btn-bg: #FFB74D;
+$cancel-btn-bg: #B3E5FC;
+
+h2 {
+    border-bottom: 1px solid;
+    margin: 0;
+}
+
+.btn-wrap {
+    margin: 10px;
+}
+
+.btn {
+    background-color: $btn-bg;
+    width: 480px;
+    height: 75px;
+    font-size: 1.3rem;
+}
+
+.cancel-btn {
+    background-color: $cancel-btn-bg;
+}
+
+.mat-raised-button {
+    border-radius: 20px;
+}
+
+.menu-btn-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 5px;
+}

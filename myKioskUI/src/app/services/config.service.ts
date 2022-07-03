@@ -18,7 +18,6 @@ export class ConfigService {
   private productApi = '/products';
   private dispense = '/dispense';
   private pickup = '/pickup';
-  private transactionId = '/transaction-id';
 
   private brandInfo!: Brand;
   private uiModel!: UiModel;

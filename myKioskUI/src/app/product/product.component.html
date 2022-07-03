@@ -1,6 +1,6 @@
-<div class="fullscreen main-bg">
+<div class="coverparent main-bg">
     <app-header></app-header>
-    <div fxLayout="row" class="content">
+    <div fxLayout="row" class="coverparent content">
         <div fxFlex="5%" class="compensator">
             <app-extras></app-extras>
         </div>
@@ -39,7 +39,7 @@
                                 <mat-icon svgIcon="add-to-cart" class="menu-btn-icon"></mat-icon>
                                 ADD TO CART
                             </button>
-                            <button mat-raised-button class="buy-now-btn" *ngIf="available">
+                            <button mat-raised-button class="buy-now-btn" *ngIf="available" (click)="buyNow()">
                                 <mat-icon svgIcon="buy-now" class="menu-btn-icon"></mat-icon>
                                 BUY NOW
                             </button>

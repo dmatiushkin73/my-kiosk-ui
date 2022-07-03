@@ -33,12 +33,15 @@ import { ConfigService } from './services/config.service';
 import { CartService } from './services/cart.service';
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { QRCodeModule } from 'angularx-qrcode';
 
 import { HighlightDirective } from './directives/highlight.directive';
 import { ProductsComponent } from './products/products.component';
 import { CollectionComponent } from './collection/collection.component';
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
+import { PaymethodComponent } from './paymethod/paymethod.component';
+import { QrcodePaymentComponent } from './qrcode-payment/qrcode-payment.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { CartComponent } from './cart/cart.component';
     ProductsComponent,
     CollectionComponent,
     ProductComponent,
-    CartComponent
+    CartComponent,
+    PaymethodComponent,
+    QrcodePaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,8 @@ import { CartComponent } from './cart/cart.component';
     MatBadgeModule,
     MatDialogModule,
     MatListModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    QRCodeModule
   ],
   providers: [
     GlobalsService,
@@ -83,7 +89,9 @@ import { CartComponent } from './cart/cart.component';
     CartService
   ],
   entryComponents: [
-    CartComponent
+    CartComponent,
+    PaymethodComponent,
+    QrcodePaymentComponent
   ],
   bootstrap: [AppComponent]
 })

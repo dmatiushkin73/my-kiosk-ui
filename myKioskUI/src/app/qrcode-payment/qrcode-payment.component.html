@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Order checkout</h2>
+<mat-dialog-content>
+    <h3>You are going to buy <span>{{totalNumber}}</span> item(s)</h3>
+    <h3>Order cost: <span>{{totalCost}}</span></h3>
+    <div *ngIf="paymentLink">
+        <br>
+        <h3 class="text-center">Please scan the below QR code with your mobile device to pay</h3>
+        <qrcode class="qr-code" [qrdata]="paymentLink" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <h3 class="text-center countdown">Your session will expire in <span>{{countDown}}</span> second(s)</h3>
+        <br>
+    </div>
+    <div *ngIf="!paymentLink">
+        <mat-progress-spinner color="accent" mode="indeterminate"></mat-progress-spinner>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button class="menu-btn" mat-dialog-close>
+        <mat-icon svgIcon="close" class="menu-btn-icon"></mat-icon>
+        CANCEL
+    </button>
+</mat-dialog-actions>

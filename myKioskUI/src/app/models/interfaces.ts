@@ -148,3 +148,7 @@ export interface VariantUpdate {
     variantId: number;
     available: number;
 }
+
+export interface TransactionIdResult {
+    transactionId: string;
+}

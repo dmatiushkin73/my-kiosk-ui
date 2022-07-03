@@ -24,13 +24,16 @@
 <mat-dialog-actions align="end">
     <button mat-raised-button class="menu-btn" *ngIf="cartContents" (click)="onClearClick()">
         <mat-icon svgIcon="clear" class="menu-btn-icon"></mat-icon>
-        CLEAR CART</button>
+        CLEAR CART
+    </button>
     <button mat-raised-button class="menu-btn" mat-dialog-close>
         <mat-icon svgIcon="close" class="menu-btn-icon"></mat-icon>
-        CLOSE</button>
-    <button mat-raised-button class="menu-btn checkout-btn" *ngIf="cartContents" mat-dialog-close="checkout">
+        CLOSE
+    </button>
+    <button mat-raised-button class="menu-btn checkout-btn" *ngIf="cartContents" (click)="onCheckoutClick()">
         <mat-icon svgIcon="checkout" class="menu-btn-icon"></mat-icon>
-        CHECKOUT</button>
+        CHECKOUT
+    </button>
 </mat-dialog-actions>
 
 

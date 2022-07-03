@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { ProductData } from '../models/interfaces';
@@ -7,6 +7,9 @@ import { CartService } from '../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { appear } from '../app.animation';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CartComponent } from '../cart/cart.component';
+import { CART_DLG_SIZES } from '../app.constants';
 
 interface Item {
   name: string;
@@ -31,7 +34,7 @@ interface VariantOption {
     appear()
   ]
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
 
   product?: ProductData;
   variantInd = 0;
@@ -44,13 +47,15 @@ export class ProductComponent implements OnInit {
   optionNames: string[] = [];
   options: {[key: string]: Option} = {};
   opt2var: VariantOption[] = [];
+  cartDialogRef?: MatDialogRef<CartComponent>;
 
   constructor(private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
     private configService: ConfigService,
     private cartService: CartService,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog) {
       iconRegistry.addSvgIcon('add-to-cart', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/to_cart.svg'));
       iconRegistry.addSvgIcon('buy-now', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/buy_now.svg'));
   }
@@ -81,6 +86,12 @@ export class ProductComponent implements OnInit {
         }
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartDialogRef) {
+      this.cartDialogRef.close();
+    }
   }
 
   private buildOptions() {
@@ -169,7 +180,38 @@ export class ProductComponent implements OnInit {
         });
       }
       else {
-        this.snackBar.open(this.configService.getLastErrMsg(), undefined, {
+        const msg = `Unable to add ${this.cartService.composeVariantName(this.product.name, this.product.variants[this.variantInd].options)} to the Shopping Cart`;
+        this.snackBar.open(msg, undefined, {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 2000,
+          panelClass: 'errmsg-panel'
+        });
+      }
+    }
+  }
+
+  async buyNow() {
+    if (this.product) {
+      let v = await this.cartService.addItemToCart(this.product.name, this.product.variants[this.variantInd]);
+      if (v) {
+        const msg = `${this.cartService.composeVariantName(this.product.name, this.product.variants[this.variantInd].options)} added to the Shopping Cart`;
+        this.snackBar.open(msg, undefined, {
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom',
+            duration: 2000,
+            panelClass: 'msg-panel'
+        });
+        this.cartDialogRef = this.dialog.open(CartComponent, {
+          width: CART_DLG_SIZES.width, 
+          minHeight: CART_DLG_SIZES.minHeight,
+          maxHeight: CART_DLG_SIZES.maxHeight,
+          data: {buyNow: true}
+        });
+      }
+      else {
+        const msg = `Unable to add ${this.cartService.composeVariantName(this.product.name, this.product.variants[this.variantInd].options)} to the Shopping Cart`;
+        this.snackBar.open(msg, undefined, {
           horizontalPosition: 'center',
           verticalPosition: 'top',
           duration: 2000,

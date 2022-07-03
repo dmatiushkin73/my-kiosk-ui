@@ -3,7 +3,6 @@
 $menu-btn-bg: #B3E5FC;
 $checkout-btn-bg: #C5E1A5;
 $cost-color: #D84315;
-$item-bg: #ECEFF1;
 
 .totals-sect {
     width: 100%;
@@ -80,11 +79,6 @@ h2 {
     padding-right: 10px;
     font-weight: 500;
     font-size: 1.1rem;
-}
-
-.cart-item {
-    background-color: $item-bg;
-    margin-bottom: 5px;
 }
 
 .trash-btn-icon {

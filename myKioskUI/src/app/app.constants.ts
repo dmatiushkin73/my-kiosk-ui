@@ -34,3 +34,13 @@ export enum UI_MODE {
   MAINTENANCE = 2
 }
 
+export enum PAYMENT_METHOD {
+  QR_CODE = 0,
+  CREDIT_CARD = 1
+}
+
+export const CART_DLG_SIZES = {
+  width: "70vw", 
+  minHeight: "25vh",
+  maxHeight: "80vh"
+}

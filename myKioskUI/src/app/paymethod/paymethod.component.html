@@ -1,0 +1,21 @@
+<h2>Please choose payment method</h2>
+<div fxLayout="column" class="coverparent">
+    <div fxFlex="33%" class="btn-wrap">
+        <button mat-raised-button class="btn" (click)="onQRCodeSelected()">
+            <mat-icon svgIcon="qr-code" class="menu-btn-icon"></mat-icon>
+            SCAN QR CODE BY YOUR MOBILE DEVICE
+        </button>
+    </div>
+    <div fxFlex="33%" class="btn-wrap">
+        <button mat-raised-button class="btn" [disabled]="!cardMethodEnabled" (click)="onCreditCardSelected()">
+            <mat-icon svgIcon="card" class="menu-btn-icon"></mat-icon>
+            USE YOUR CREDIT CARD/YOUR PHONE
+        </button>
+    </div>
+    <div fxFlex="33%" class="btn-wrap">
+        <button mat-raised-button class="btn cancel-btn" mat-dialog-close>
+            <mat-icon svgIcon="cancel" class="menu-btn-icon"></mat-icon>
+            CANCEL
+        </button>
+    </div>
+</div>
