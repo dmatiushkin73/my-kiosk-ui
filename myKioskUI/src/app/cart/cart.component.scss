@@ -1,7 +1,5 @@
 @import '../app.component.scss';
 
-$menu-btn-bg: #B3E5FC;
-$checkout-btn-bg: #C5E1A5;
 $cost-color: #D84315;
 
 .totals-sect {
@@ -32,13 +30,13 @@ $cost-color: #D84315;
 }
 
 .menu-btn {
-    background-color: $menu-btn-bg;
+    background-color: $main-btn-color;
     width: 180px;
     font-size: 1.2rem;
 }
 
 .checkout-btn {
-    background-color: $checkout-btn-bg;
+    background-color: $apply-btn-color;
 }
 
 h2 {

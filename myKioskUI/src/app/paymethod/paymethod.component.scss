@@ -1,8 +1,5 @@
 @import '../app.component.scss';
 
-$btn-bg: #FFB74D;
-$cancel-btn-bg: #B3E5FC;
-
 h2 {
     border-bottom: 1px solid;
     margin: 0;
@@ -13,14 +10,14 @@ h2 {
 }
 
 .btn {
-    background-color: $btn-bg;
+    background-color: $primary-color;
     width: 480px;
     height: 75px;
     font-size: 1.3rem;
 }
 
 .cancel-btn {
-    background-color: $cancel-btn-bg;
+    background-color: $main-btn-color;
 }
 
 .mat-raised-button {

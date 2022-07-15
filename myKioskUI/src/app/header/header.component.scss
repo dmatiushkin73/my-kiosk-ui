@@ -1,14 +1,13 @@
 @import '../app.component.scss';
 
 $h-bg: black;
-$h-color: #FFB74D;
+$h-color: $primary-color;
 $h-height: 15vh;
 $brand-font-size: 7vh;
 $logo-height: 70%;
 $title-color: #FFFDE7;
 $title-font-size: 5vh;
 $title-pad-right: 10vw;
-$menu-btn-bg: #FFB74D;
 $back-btn-size: 10vh;
 
 .toolbar {

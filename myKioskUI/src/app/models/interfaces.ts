@@ -152,3 +152,18 @@ export interface VariantUpdate {
 export interface TransactionIdResult {
     transactionId: string;
 }
+
+export interface OrderData {
+    variantId: number;
+    name: string;
+    image: string;
+    amount: number;
+    dispensed?: number;
+    complete?: boolean;
+    success?: boolean;
+}
+
+export interface PickupResponse {
+    status: string;
+    order?: OrderData[];
+}

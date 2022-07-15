@@ -25,6 +25,15 @@ export enum RESPONSE {
   NOK = 'NOK',
 }
 
+export enum PICKUP_STATUS {
+  OK = 'OK', 
+  NOK = 'NOK',
+  PENDING = 'PENDING',
+  NOT_FOUND = 'NOT FOUND',
+  EXPIRED = 'EXPIRED',
+  FULFILLED = 'FULFILLED'
+}
+
 export const HEARTBEAT_TIMEOUT_MS = 60000;
 export const DISPLAY_ID = 'displayId';
 

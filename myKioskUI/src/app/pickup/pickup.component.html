@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>{{title}}</h2>
+<mat-dialog-content>
+    <div class="code" *ngIf="enteringCode || validationUnsuccessful">
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="" class="code-form-field" [formControl]="pickUpCode">
+            <mat-error *ngIf="pickUpCode.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+    </div>
+    <div class="code" *ngIf="validationInProgress">
+        <mat-progress-spinner color="accent" mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <div class="msg" *ngIf="validationUnsuccessful">
+        <span class="valid-result">{{validationResult}}</span>
+    </div>
+    <div class="order" *ngIf="(dispensingInProgress || dispensingComplete) && order">
+        <mat-list>
+            <mat-list-item *ngFor="let item of order">
+                <img matListAvatar src="{{item.image}}" alt="{{item.variantId}}">
+                <span class="order-text indent">{{item.name}}</span>
+                <span class="flex-spacer"></span>
+                <span class="order-text ita-text indent">Dispensed</span>
+                <span class="order-text ita-text order-values">{{item.dispensed}}</span>
+                <span class="order-text ita-text">items of</span>
+                <span class="order-text ita-text order-values">{{item.amount}}</span>
+                <span class="icon-wrap">
+                    <mat-icon svgIcon="success" class="disp-icon" *ngIf="item.complete && item.success"></mat-icon>
+                    <mat-icon svgIcon="warning" class="disp-icon" *ngIf="item.complete && !item.success"></mat-icon>
+                    <mat-progress-spinner color="primary" diameter="32" mode="indeterminate" *ngIf="!item.complete"></mat-progress-spinner>
+                </span>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center" *ngIf="enteringCode || validationUnsuccessful || dispensingComplete">
+    <button mat-raised-button class="menu-btn" mat-dialog-close *ngIf="enteringCode">
+        <mat-icon svgIcon="close" class="menu-btn-icon"></mat-icon>
+        CANCEL
+    </button>
+    <button mat-raised-button class="menu-btn ok-btn" [disabled]="pickUpCode.invalid" *ngIf="enteringCode" (click)="onOkClick()">
+        <mat-icon svgIcon="ok" class="menu-btn-icon"></mat-icon>
+        OK
+    </button>
+    <button mat-raised-button class="menu-btn" *ngIf="validationUnsuccessful" (click)="onRetryClick()">
+        <mat-icon svgIcon="retry" class="menu-btn-icon"></mat-icon>
+        RETRY
+    </button>
+    <button mat-raised-button class="menu-btn" mat-dialog-close *ngIf="validationUnsuccessful || dispensingComplete">
+        <mat-icon svgIcon="close" class="menu-btn-icon"></mat-icon>
+        CLOSE
+    </button>
+</mat-dialog-actions>

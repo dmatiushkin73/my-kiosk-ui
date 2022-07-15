@@ -1,7 +1,5 @@
 @import '../app.component.scss';
 
-$menu-btn-bg: #B3E5FC;
-
 .menu-btn-container {
     width: 100%;
     justify-content: center;
@@ -11,7 +9,7 @@ $menu-btn-bg: #B3E5FC;
 
 .menu-btn {
      width: 210px;
-     background-color: $menu-btn-bg;
+     background-color: $main-btn-color;
      font-size: 1.4rem;
 }
 
@@ -24,7 +22,7 @@ $menu-btn-bg: #B3E5FC;
 .cart-btn {
     width: 80px;
     height: 80px;
-    background-color: $menu-btn-bg;
+    background-color: $main-btn-color;
 }
 
 .menu-btn-icon {

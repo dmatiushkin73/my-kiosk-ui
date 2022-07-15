@@ -6,6 +6,7 @@ import { CartService } from '../services/cart.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CartComponent } from '../cart/cart.component';
 import { CART_DLG_SIZES } from '../app.constants';
+import { PickupComponent } from '../pickup/pickup.component';
 
 @Component({
   selector: 'app-side-menu',
@@ -69,6 +70,13 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       minHeight: CART_DLG_SIZES.minHeight,
       maxHeight: CART_DLG_SIZES.maxHeight,
       data: {buyNow: false}
+    });
+  }
+
+  onPickupClick() {
+    this.dialog.open(PickupComponent, {
+      maxHeight: "50vh",
+      maxWidth: "70vw"
     });
   }
 }

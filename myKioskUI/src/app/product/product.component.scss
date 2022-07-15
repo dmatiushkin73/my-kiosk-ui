@@ -1,13 +1,11 @@
 @import '../app.component.scss';
 
 $h-bg: black;
-$h-color: #FFB74D;
+$h-color: $primary-color;
 $h-height: 15vh;
 $sides-pad-top: 10vh;
 $price-color: black;
 $compare-price-color: #E53935;
-$add2cart-bg: #FFB74D;
-$buy-bg: #C5E1A5;
 $sold-out-color: #F44336;
 
 .content {
@@ -61,14 +59,14 @@ $sold-out-color: #F44336;
 .add-to-cart-btn {
     width: 200px;
     font-size: 1.2rem;
-    background-color: $add2cart-bg;
+    background-color: $primary-color;
     margin-right: 20px;
 }
 
 .buy-now-btn {
     width: 200px;
     font-size: 1.2rem;
-    background-color: $buy-bg;
+    background-color: $apply-btn-color;
 }
 
 .mat-raised-button {

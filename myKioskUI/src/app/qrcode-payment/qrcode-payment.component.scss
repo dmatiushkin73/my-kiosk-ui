@@ -1,8 +1,5 @@
 @import '../app.component.scss';
 
-$menu-btn-bg: #B3E5FC;
-$cnt-down-color: #FFB74D;
-
 h2 {
     border-bottom: 1px solid;
     margin: 0;
@@ -14,7 +11,7 @@ h2 {
 }
 
 .menu-btn {
-    background-color: $menu-btn-bg;
+    background-color: $main-btn-color;
     width: 180px;
     font-size: 1.2rem;
 }
@@ -40,5 +37,5 @@ h3 span {
 }
 
 .countdown {
-    color: $cnt-down-color;
+    color: $primary-color;
 }

@@ -17,7 +17,6 @@ export class ConfigService {
   private collectionApi = '/collections';
   private productApi = '/products';
   private dispense = '/dispense';
-  private pickup = '/pickup';
 
   private brandInfo!: Brand;
   private uiModel!: UiModel;
