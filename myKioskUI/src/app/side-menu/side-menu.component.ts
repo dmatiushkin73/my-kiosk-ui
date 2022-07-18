@@ -20,6 +20,7 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   productsInCart = 0;
   cartBadgeHidden = true;
   cartDialogRef?: MatDialogRef<CartComponent>;
+  pickupDialogRef?: MatDialogRef<PickupComponent>;
 
   constructor(private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer,
@@ -62,6 +63,9 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     if (this.cartDialogRef) {
       this.cartDialogRef.close();
     }
+    if (this.pickupDialogRef) {
+      this.pickupDialogRef.close();
+    }
   }
 
   onCartClick() {
@@ -69,14 +73,16 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       width: CART_DLG_SIZES.width, 
       minHeight: CART_DLG_SIZES.minHeight,
       maxHeight: CART_DLG_SIZES.maxHeight,
+      disableClose: true,
       data: {buyNow: false}
     });
   }
 
   onPickupClick() {
-    this.dialog.open(PickupComponent, {
+    this.pickupDialogRef = this.dialog.open(PickupComponent, {
       maxHeight: "50vh",
-      maxWidth: "70vw"
+      maxWidth: "70vw",
+      disableClose: true
     });
   }
 }

@@ -41,7 +41,7 @@ export class ConfigService {
 
   async loadBrandInfo(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      this.http.get<Brand>(`${environment.serverAddress}${this.brandApi}`,
+      this.http.get<Brand>(`${environment.restServerUrl}${this.brandApi}`,
                            this.globalsService.getHttpReadOptions())
       .subscribe({
         next: (v) => {
@@ -59,7 +59,7 @@ export class ConfigService {
   
   async loadUiModel(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
-      this.http.get<UiModel>(`${environment.serverAddress}${this.modelApi}`,
+      this.http.get<UiModel>(`${environment.restServerUrl}${this.modelApi}`,
                              this.globalsService.getHttpReadOptions())
       .subscribe({
         next: (v) => {
@@ -78,7 +78,7 @@ export class ConfigService {
 
   loadCollection(id: Number): Promise<CollectionData> {
     return new Promise<CollectionData>((resolve, reject) => {
-      this.http.get<CollectionData>(`${environment.serverAddress}${this.collectionApi}/${id}`,
+      this.http.get<CollectionData>(`${environment.restServerUrl}${this.collectionApi}/${id}`,
                                     this.globalsService.getHttpReadOptions())
       .subscribe({
         next: (v) => {
@@ -126,7 +126,7 @@ export class ConfigService {
 
   loadProduct(id: Number): Promise<ProductData> {
     return new Promise<ProductData>((resolve, reject) => {
-      this.http.get<ProductData>(`${environment.serverAddress}${this.productApi}/${id}`,
+      this.http.get<ProductData>(`${environment.restServerUrl}${this.productApi}/${id}`,
                                  this.globalsService.getHttpReadOptions())
       .subscribe({
         next: (v) => {

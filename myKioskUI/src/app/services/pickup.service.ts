@@ -6,10 +6,22 @@ import { environment } from 'src/environments/environment';
 import { PickupResponse, OrderData } from '../models/interfaces';
 import { PICKUP_STATUS } from '../app.constants';
 import { Observable, of, delay } from 'rxjs';
+import { WebsocketService } from './websocket.service';
+import { DISPENSING_STATUS, WsMessage, WsMsgType } from '../models/wsmessage';
+
+export interface PickupOrderItem {
+  variantId: number;
+  name: string;
+  image: string;
+  amount: number;
+  dispensed: number;
+  complete: boolean;
+  success: boolean;
+}
 
 export class PickupOrderInfo {
   status: string;
-  order: OrderData[];
+  order: PickupOrderItem[];
 
   constructor() {
     this.status = "";
@@ -27,10 +39,51 @@ export class PickupService {
   private lastErrorMsg = "";
 
   constructor(private http: HttpClient,
-    private globalsService: GlobalsService) { }
+    private globalsService: GlobalsService,
+    private wsService: WebsocketService) { }
 
   private doRequestPickup(code: string): Observable<PickupResponse> {
     if (environment.simulation) {
+      this.wsService.simulateSequence([
+        {
+          messageType: WsMsgType.DISPENSING_STATUS,
+          eventType: DISPENSING_STATUS.DISPENSING_STARTED
+        },
+        {
+          messageType: WsMsgType.DISPENSING_STATUS,
+          eventType: DISPENSING_STATUS.DISPENSED_ONE_ITEM,
+          variantId: 6000000000016,
+          status: true
+        },
+        {
+          messageType: WsMsgType.DISPENSING_STATUS,
+          eventType: DISPENSING_STATUS.DISPENSED_ONE_ITEM,
+          variantId: 6000000000023,
+          status: true
+        },
+        {
+          messageType: WsMsgType.DISPENSING_STATUS,
+          eventType: DISPENSING_STATUS.WAIT_FOR_PICKUP
+        },
+        {
+          messageType: WsMsgType.DISPENSING_STATUS,
+          eventType: DISPENSING_STATUS.DISPENSING_STARTED
+        },
+        {
+          messageType: WsMsgType.DISPENSING_STATUS,
+          eventType: DISPENSING_STATUS.DISPENSED_ONE_ITEM,
+          variantId: 6000000000016,
+          status: true
+        },
+        {
+          messageType: WsMsgType.DISPENSING_STATUS,
+          eventType: DISPENSING_STATUS.WAIT_FOR_PICKUP
+        },
+        {
+          messageType: WsMsgType.DISPENSING_STATUS,
+          eventType: DISPENSING_STATUS.DISPENSED_ALL_ITEMS
+        }
+      ]);
       return of({
         status: PICKUP_STATUS.OK,
         order: [
@@ -50,7 +103,7 @@ export class PickupService {
       }).pipe(delay(1000));
     }
     else {
-      return this.http.post<PickupResponse>(`${environment.serverAddress}${this.pickupApi}`, code,
+      return this.http.post<PickupResponse>(`${environment.restServerUrl}${this.pickupApi}`, code,
                                             this.globalsService.getHttpWriteOptions());
     }
   }

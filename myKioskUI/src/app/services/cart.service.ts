@@ -99,7 +99,7 @@ export class CartService {
       return of({message: "OK"});
     }
     else {
-      return this.http.put<ResponseResult>(`${environment.serverAddress}${this.cartApi}`,
+      return this.http.put<ResponseResult>(`${environment.restServerUrl}${this.cartApi}`,
         cartItem,
         this.globalsService.getHttpWriteOptions());
     }
@@ -110,7 +110,7 @@ export class CartService {
       return of({message: "OK"});
     }
     else {
-      return this.http.delete<ResponseResult>(`${environment.serverAddress}${this.cartApi}`,
+      return this.http.delete<ResponseResult>(`${environment.restServerUrl}${this.cartApi}`,
         this.globalsService.getHttpWriteOptions());
     }
   }
@@ -329,7 +329,7 @@ export class CartService {
 
   async getTransactionId(): Promise<string> {
     return new Promise<string>((resolve) => {
-      this.http.get<TransactionIdResult>(`${environment.serverAddress}${this.transactionIdApi}`,
+      this.http.get<TransactionIdResult>(`${environment.restServerUrl}${this.transactionIdApi}`,
                                          this.globalsService.getHttpReadOptions())
       .subscribe({
         next: (v) => {

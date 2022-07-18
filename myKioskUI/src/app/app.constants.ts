@@ -2,23 +2,9 @@
 export const INACTIVITY_TIME = 90;
 export const TRANSACTION_LIFE_TIME = 60;
 export const INACTIVITY_CONFIRM_TIME = 10;
+export const AUTOCLOSE_TIMEOUT = 15;
 
 export const PICKUP_CODE_LENGTH = 6;
-
-export enum DISPENSING_STATUS {
-  DISPENSING_STARTED = 'dispensing_started',
-  DISPENSED_ONE_ITEM = 'dispensed_one_item',
-  WAIT_FOR_PICKUP = 'wait_for_pickup',
-  DISPENSED_ALL_ITEMS = 'dispensed_all_items',
-}
-
-export enum MACHINE_STATUS {
-  AVAILABLE = 'available',     // machine is available for any operation
-  BUSY = 'busy',               // machine is unavailable for new dispensing requests
-  UNAVAILABLE = 'unavailable', // machine is unavailable for users
-  ERROR = 'error',             // machine is not usable at all
-  SWUPDATE = 'sw-update',      // software update was requested and machine is about to execute update procedure
-}
 
 export enum RESPONSE {
   OK = 'OK',

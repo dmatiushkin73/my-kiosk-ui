@@ -29,6 +29,9 @@
                 </span>
             </mat-list-item>
         </mat-list>
+        <div class="msg">
+            <span class="disp-status">{{dispensingStatus}}</span>
+        </div>
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="center" *ngIf="enteringCode || validationUnsuccessful || dispensingComplete">

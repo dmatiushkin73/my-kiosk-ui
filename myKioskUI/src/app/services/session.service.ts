@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { INACTIVITY_TIME, MACHINE_STATUS, UI_MODE, TRANSACTION_LIFE_TIME } from '../app.constants';
+import { INACTIVITY_TIME, UI_MODE, TRANSACTION_LIFE_TIME } from '../app.constants';
+import { MACHINE_STATUS } from '../models/wsmessage';
 import { interval, fromEvent, filter } from 'rxjs';
 import { CartService } from './cart.service';
 import { MachineService } from './machine.service';

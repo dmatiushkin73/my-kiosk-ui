@@ -1,6 +1,7 @@
 @import '../app.component.scss';
 
 $validation-result-color: #F44336;
+$disp-status-color: #673AB7;
 
 h2 {
     border-bottom: 1px solid;
@@ -90,4 +91,12 @@ h2 {
 
 .icon-wrap {
     padding-left: 10px;
+}
+
+.disp-status {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $disp-status-color;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
