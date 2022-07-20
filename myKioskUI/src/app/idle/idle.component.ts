@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { emerge } from '../app.animation';
 
 @Component({
   selector: 'app-idle',
   templateUrl: './idle.component.html',
-  styleUrls: ['./idle.component.scss']
+  styleUrls: ['./idle.component.scss'],
+  animations: [
+    emerge()
+  ]
 })
 export class IdleComponent implements OnInit {
 

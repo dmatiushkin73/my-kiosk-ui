@@ -1,6 +1,6 @@
 export enum WsMsgType {
     HUMAN_DETECTED = "humanDetected",
-    BRAND_INFO_UPDATED = "brandInfoUpdated", // Not used
+    BRAND_INFO_UPDATED = "brandInfoUpdated",
     UI_MODEL_UPDATED = "uiModelUpdated",
     DISPENSING_STATUS = "dispensingStatus",
     MACHINE_STATUS = "machineStatus"

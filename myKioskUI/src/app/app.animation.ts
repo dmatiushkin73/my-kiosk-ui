@@ -61,3 +61,17 @@ export function appear() {
         ])
     ]);
 }
+
+export function emerge() {
+    return trigger('emerge', [
+        state('*', style({
+            opacity: 1
+        })),
+        transition(':enter', [
+            style({ opacity: 0}),
+            animate('1000ms ease-out', style({
+                opacity: 1
+            }))
+        ])
+    ]);
+}
