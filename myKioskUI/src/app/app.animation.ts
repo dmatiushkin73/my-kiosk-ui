@@ -22,10 +22,26 @@ export function flyInOut() {
         })),
         transition(':enter', [
             style({ transform: 'translateY(100%)', opacity: 0}),
-            animate('500ms ease-in')
+            animate('500ms ease-out')
         ]),
         transition(':leave', [
-            animate('500ms ease-out', style({ transform: 'translateY(100%)', opacity: 0}))
+            animate('500ms ease-in', style({ transform: 'translateY(100%)', opacity: 0}))
+        ])
+    ]);
+}
+
+export function flyInOutLeft() {
+    return trigger('flyInOutLeft', [
+        state('*', style({
+            opacity: 1,
+            transform: 'translateX(0)'
+        })),
+        transition(':enter', [
+            style({ transform: 'translateX(-100%)', opacity: 0}),
+            animate('500ms ease-out')
+        ]),
+        transition(':leave', [
+            animate('500ms ease-in', style({ transform: 'translateX(-100%)', opacity: 0}))
         ])
     ]);
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UI_MODE } from '../app.constants';
 import { HttpHeaders } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,11 @@ export class GlobalsService {
   private httpWriteOptions = {};
   private httpReadOptions = {};
 
-  constructor() { }
+  private contactsVisibility$: Subject<boolean>;
+
+  constructor() { 
+    this.contactsVisibility$ = new Subject<boolean>();
+  }
 
   setDisplayId(id: string) {
     this.displayId = id;
@@ -49,5 +54,17 @@ export class GlobalsService {
 
   getHttpWriteOptions() {
     return this.httpWriteOptions;
+  }
+
+  showContacts() {
+    this.contactsVisibility$.next(true);
+  }
+
+  hideContacts() {
+    this.contactsVisibility$.next(false);
+  }
+
+  watchContactsVisibility(): Subject<boolean> {
+    return this.contactsVisibility$;
   }
 }

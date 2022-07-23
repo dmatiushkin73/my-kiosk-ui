@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Brand, UiModel, BrandDetails, Banner, Slider, ProfileDetails, CollectionData, ProductData, VariantUpdate } from '../models/interfaces';
+import { Brand, UiModel, BrandDetails, Banner, Slider, ProfileDetails, CollectionData, ProductData, VariantUpdate, Contact } from '../models/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { GlobalsService } from './globals.service';
 import { handleHttpError } from '../shared/utils';
@@ -235,12 +235,16 @@ export class ConfigService {
     this.currentProfile = id;
   }
   
-  getBrandDetails(): BrandDetails{
+  getBrandDetails(): BrandDetails {
     return {
       name: this.brandInfo.customerName,
       showName: this.brandInfo.showCustomerName,
       logo: this.brandInfo.logoUrl
     };
+  }
+
+  getContacts(): Contact[] {
+    return this.brandInfo.contacts;
   }
 
   getLeftBanner(): Banner | undefined {

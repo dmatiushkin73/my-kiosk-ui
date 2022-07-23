@@ -78,6 +78,7 @@ export class SessionService {
 
   private onSessionEnd() {
     this.cartService.clearCart();
+    this.globalsService.hideContacts();
     this.router.navigate(['/idle']);
   }
 

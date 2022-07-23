@@ -49,6 +49,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { HighlightDirective } from './directives/highlight.directive';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     PaymethodComponent,
     QrcodePaymentComponent,
     KeyboardComponent,
-    PickupComponent
+    PickupComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,

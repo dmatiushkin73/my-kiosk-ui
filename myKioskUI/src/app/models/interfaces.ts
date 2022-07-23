@@ -75,6 +75,7 @@ export interface BrandColor {
 export interface Contact {
     phone: string;
     department: string;
+    email: string;
 }
 
 export interface Brand {

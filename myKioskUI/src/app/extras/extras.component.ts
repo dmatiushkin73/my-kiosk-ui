@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GlobalsService } from '../services/globals.service';
 
 @Component({
   selector: 'app-extras',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExtrasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private globalsService: GlobalsService) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +18,6 @@ export class ExtrasComponent implements OnInit {
   }
 
   onContactsClick() {
-    
+    this.globalsService.showContacts();
   }
 }
