@@ -36,6 +36,8 @@ import { PaymethodComponent } from './paymethod/paymethod.component';
 import { QrcodePaymentComponent } from './qrcode-payment/qrcode-payment.component';
 import { KeyboardComponent } from './keyboard/keyboard.component';
 import { PickupComponent } from './pickup/pickup.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { DebugConsoleComponent } from './debug-console/debug-console.component';
 
 import { GlobalsService } from './services/globals.service';
 import { MachineService } from './services/machine.service';
@@ -49,7 +51,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { QRCodeModule } from 'angularx-qrcode';
 
 import { HighlightDirective } from './directives/highlight.directive';
-import { ContactsComponent } from './contacts/contacts.component';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { ContactsComponent } from './contacts/contacts.component';
     QrcodePaymentComponent,
     KeyboardComponent,
     PickupComponent,
-    ContactsComponent
+    ContactsComponent,
+    DebugConsoleComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,

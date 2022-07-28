@@ -28,3 +28,11 @@ $contacts-color: white;
 .mat-flat-button {
     border-radius: 0px;
 }
+
+.debug-btn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: $main-bg;
+    color: $main-bg;
+}

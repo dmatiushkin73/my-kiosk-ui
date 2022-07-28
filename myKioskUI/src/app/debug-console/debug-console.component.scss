@@ -1,0 +1,23 @@
+@import '../app.component.scss';
+
+$cons-bg: black;
+$cons-color: floralwhite;
+
+.dbg-console {
+    width: 400px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 105;
+    background-color: $cons-bg;
+    color: $cons-color;
+    padding: 10px;
+}
+
+.cmd-form-field {
+    width: 300px;
+}
+
+.dbg-btn {
+    margin-left: 10px;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalsService } from '../services/globals.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-extras',
@@ -8,7 +9,11 @@ import { GlobalsService } from '../services/globals.service';
 })
 export class ExtrasComponent implements OnInit {
 
-  constructor(private globalsService: GlobalsService) { }
+  dbgBtnEnabled: boolean;
+
+  constructor(private globalsService: GlobalsService) { 
+    this.dbgBtnEnabled = environment.simulation;
+  }
 
   ngOnInit(): void {
   }
@@ -19,5 +24,9 @@ export class ExtrasComponent implements OnInit {
 
   onContactsClick() {
     this.globalsService.showContacts();
+  }
+
+  onDebugClick() {
+    this.globalsService.showDebugConsole();
   }
 }

@@ -1,7 +1,6 @@
 // time in sec
 export const INACTIVITY_TIME = 90;
 export const TRANSACTION_LIFE_TIME = 60;
-export const INACTIVITY_CONFIRM_TIME = 10;
 export const AUTOCLOSE_TIMEOUT = 15;
 
 export const PICKUP_CODE_LENGTH = 6;

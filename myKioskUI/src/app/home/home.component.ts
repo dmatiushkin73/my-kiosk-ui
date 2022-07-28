@@ -33,17 +33,53 @@ export class HomeComponent implements OnInit {
     private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    if (this.prevRouteService.getPreviousUrl() == '/idle') {
-      this.loaded = false;
-      this.loadConfigData()
-      .then(() => {
-        console.log("Configuration is loaded");
-        this.loaded = true;
+    if (this.prevRouteService.getPreviousUrl() == '/idle' &&
+        (!this.configService.isDataLoaded() ||
+          this.configService.isBrandInfoUpdated() ||
+          this.configService.isUiModelUpdated())) {
+      if (!this.configService.isDataLoaded()) {
+        this.loaded = false;
+        this.loadBrandConfigData()
+        .then(() => {
+          this.loadModelConfigData()
+          .then(() => {
+            console.log("Configuration is loaded");
+            this.loaded = true;
+            this.configService.setDataLoaded();
+            this.sessionService.startSession();
+          })
+          .catch((err) => {
+            console.log("Error occured during model configuration loading: ", err);
+          });
+        })
+        .catch((err) => {
+          console.log("Error occured during brand configuration loading: ", err);
+        });
+      }
+      else {
+        if (this.configService.isBrandInfoUpdated()) {
+          this.loadBrandConfigData()
+          .then(() => {
+            console.log("Updated Brand Configuration is loaded");
+          })
+          .catch((err) => {
+            console.log("Error occured during updated brand configuration loading: ", err);
+          });
+        }
+        if (this.configService.isUiModelUpdated()) {
+          this.loaded = false;
+          this.loadModelConfigData()
+          .then(() => {
+            console.log("Updated UiModel Configuration is loaded");
+            this.loaded = true;
+            this.configService.setDataLoaded();
+          })
+          .catch((err) => {
+            console.log("Error occured during model configuration loading: ", err);
+          });
+        }
         this.sessionService.startSession();
-      })
-      .catch((err) => {
-        console.log("Error occured during configuration loading: ", err);
-      });
+      }
     }
     else {
       this.loaded = true;
@@ -52,8 +88,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  private async loadConfigData(): Promise<void> {
-    this.configService.reset();
+  private async loadBrandConfigData(): Promise<void> {
     console.log("Requesting brand info");
     let v = await this.configService.loadBrandInfo();
     if (!v) {
@@ -68,8 +103,12 @@ export class HomeComponent implements OnInit {
       console.log("Brand info loaded");
       this.brandDetails = this.configService.getBrandDetails();
     }
+  }
+
+  private async loadModelConfigData(): Promise<void> {
+    this.configService.reset();
     console.log("Requesting UI Model");
-    v = await this.configService.loadUiModel();
+    let v = await this.configService.loadUiModel();
     if (!v) {
       this.snackBar.open(this.configService.getLastErrMsg(), undefined, {
         horizontalPosition: 'center',

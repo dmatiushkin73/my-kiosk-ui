@@ -5,6 +5,8 @@ import { GlobalsService } from './globals.service';
 import { handleHttpError } from '../shared/utils';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
+import { WebsocketService } from './websocket.service';
+import { WsMsgType } from '../models/wsmessage';
 
 @Injectable({
   providedIn: 'root'
@@ -26,17 +28,36 @@ export class ConfigService {
   private collections: CollectionData[] = [];
   private products: ProductData[] = [];
   private availabilityChange$: Subject<VariantUpdate>;
+  private dataLoaded = false;
+  private brandInfoUpdated = false;
+  private uiModelUpdated = false;
 
   private lastErrorMsg = "";
 
   constructor(private http: HttpClient,
-    private globalsService: GlobalsService) {
+    private globalsService: GlobalsService,
+    private wsService: WebsocketService) {
       this.availabilityChange$ = new Subject<VariantUpdate>();
+  }
+
+  init() {
+    this.wsService.watchConfigChange()
+    .subscribe({
+      next: (msg) => {
+        if (msg.messageType == WsMsgType.BRAND_INFO_UPDATED) {
+          this.brandInfoUpdated = true;
+        }
+        else if (msg.messageType == WsMsgType.UI_MODEL_UPDATED) {
+          this.uiModelUpdated = true;
+        }
+      }
+    });
   }
 
   reset() {
     this.collections.length = 0;
     this.products.length = 0;
+    this.dataLoaded = false;
   }
 
   async loadBrandInfo(): Promise<boolean> {
@@ -46,6 +67,7 @@ export class ConfigService {
       .subscribe({
         next: (v) => {
           this.brandInfo = v;
+          this.brandInfoUpdated = false;
           resolve(true);
         },
         error: (err) => {
@@ -65,6 +87,7 @@ export class ConfigService {
         next: (v) => {
           this.uiModel = v;
           this.parseUiModel();
+          this.uiModelUpdated = false;
           resolve(true);
         },
         error: (err) => {
@@ -329,5 +352,21 @@ export class ConfigService {
         }
       }
     }
+  }
+
+  isDataLoaded(): boolean {
+    return this.dataLoaded;
+  }
+
+  setDataLoaded() {
+    this.dataLoaded = true;
+  }
+
+  isBrandInfoUpdated(): boolean {
+    return this.brandInfoUpdated;
+  }
+
+  isUiModelUpdated(): boolean {
+    return this.uiModelUpdated;
   }
 }

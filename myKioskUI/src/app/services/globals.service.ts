@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UI_MODE } from '../app.constants';
 import { HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,13 @@ export class GlobalsService {
   private httpReadOptions = {};
 
   private contactsVisibility$: Subject<boolean>;
+  private debugConsoleVisibility$?: Subject<boolean>;
 
   constructor() { 
     this.contactsVisibility$ = new Subject<boolean>();
+    if (environment.simulation) {
+      this.debugConsoleVisibility$ = new Subject<boolean>();
+    }
   }
 
   setDisplayId(id: string) {
@@ -66,5 +71,21 @@ export class GlobalsService {
 
   watchContactsVisibility(): Subject<boolean> {
     return this.contactsVisibility$;
+  }
+
+  showDebugConsole() {
+    if (this.debugConsoleVisibility$) {
+      this.debugConsoleVisibility$.next(true);
+    }
+  }
+
+  hideDebugConsole() {
+    if (this.debugConsoleVisibility$) {
+      this.debugConsoleVisibility$.next(false);
+    }
+  }
+
+  watchDebugConcoleVisibility(): Subject<boolean> | undefined {
+    return this.debugConsoleVisibility$;
   }
 }

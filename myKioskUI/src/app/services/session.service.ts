@@ -79,6 +79,7 @@ export class SessionService {
   private onSessionEnd() {
     this.cartService.clearCart();
     this.globalsService.hideContacts();
+    this.globalsService.hideDebugConsole();
     this.router.navigate(['/idle']);
   }
 

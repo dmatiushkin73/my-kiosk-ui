@@ -1,7 +1,7 @@
 <div class="toolbar" fxLayout="row">
     <div fxFlex="30%" class="brand-wrap">
-        <img src="{{brandDetails.logo}}" alt="{{brandDetails.name}}" class="logo-img" *ngIf="brandDetails">
-        <h1 *ngIf="brandDetails?.showName">{{brandDetails.name}}</h1>
+        <img src="{{brandDetails.logo}}" alt="{{brandDetails.name}}" class="logo-img" *ngIf="brandDetails" routerLink="/home">
+        <h1 *ngIf="brandDetails?.showName" routerLink="/home">{{brandDetails.name}}</h1>
     </div>
     <div fxFlex="50%" class="title-wrap">
         <h1>{{title}}</h1>
