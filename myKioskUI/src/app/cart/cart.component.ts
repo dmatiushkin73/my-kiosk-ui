@@ -8,6 +8,8 @@ import { PaymethodComponent } from '../paymethod/paymethod.component';
 import { PAYMENT_METHOD } from '../app.constants';
 import { QrcodePaymentComponent } from '../qrcode-payment/qrcode-payment.component';
 import { SessionService } from '../services/session.service';
+import { MachineService } from '../services/machine.service';
+import { MACHINE_STATUS } from '../models/wsmessage';
 
 @Component({
   selector: 'app-cart',
@@ -19,6 +21,7 @@ export class CartComponent implements OnInit, OnDestroy {
   cartContents?: CartData[];
   total!: string;
   buyNow: boolean;
+  enabled = true;
   paymentMethodDlgRef?: MatDialogRef<PaymethodComponent>;
   qrCodeCheckoutDlgRef?: MatDialogRef<QrcodePaymentComponent>;
 
@@ -27,6 +30,7 @@ export class CartComponent implements OnInit, OnDestroy {
     public dialogRef: MatDialogRef<CartComponent>,
     private cartService: CartService,
     private sessionService: SessionService,
+    private machineService: MachineService,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: {buyNow: boolean}) {
       iconRegistry.addSvgIcon('clear', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/clear.svg'));
@@ -43,6 +47,13 @@ export class CartComponent implements OnInit, OnDestroy {
         this.onCheckoutClick();
       }, 250);
     }
+    this.enabled = this.machineService.getMachineStatus() == MACHINE_STATUS.AVAILABLE;
+    this.machineService.watchMachineStatus()
+    .subscribe({
+      next: (ms) => {
+        this.enabled = ms == MACHINE_STATUS.AVAILABLE;
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -93,7 +104,7 @@ export class CartComponent implements OnInit, OnDestroy {
       maxHeight: "400px"
     });
     this.paymentMethodDlgRef.afterClosed().subscribe((result) => {
-      if (result == PAYMENT_METHOD.QR_CODE) {
+      if (result === PAYMENT_METHOD.QR_CODE) {
         this.sessionService.stopSession();
         this.qrCodeCheckoutDlgRef = this.dialog.open(QrcodePaymentComponent, {
           maxWidth: "80vw",

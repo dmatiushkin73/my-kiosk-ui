@@ -39,7 +39,7 @@
                                 <mat-icon svgIcon="add-to-cart" class="menu-btn-icon"></mat-icon>
                                 ADD TO CART
                             </button>
-                            <button mat-raised-button class="buy-now-btn" *ngIf="available" (click)="buyNow()">
+                            <button mat-raised-button class="buy-now-btn" *ngIf="available" [disabled]="!enabled" (click)="buyNow()">
                                 <mat-icon svgIcon="buy-now" class="menu-btn-icon"></mat-icon>
                                 BUY NOW
                             </button>

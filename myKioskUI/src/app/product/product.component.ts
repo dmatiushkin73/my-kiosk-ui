@@ -10,6 +10,8 @@ import { appear } from '../app.animation';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CartComponent } from '../cart/cart.component';
 import { CART_DLG_SIZES } from '../app.constants';
+import { MachineService } from '../services/machine.service';
+import { MACHINE_STATUS } from '../models/wsmessage';
 
 interface Item {
   name: string;
@@ -42,6 +44,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   comparePrice = "";
   sale = false;
   available = false;
+  enabled = true;
   hasVariants = false;
   varIds: number[] = [];
   optionNames: string[] = [];
@@ -55,6 +58,7 @@ export class ProductComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
+    private machineService: MachineService,
     public dialog: MatDialog) {
       iconRegistry.addSvgIcon('add-to-cart', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/to_cart.svg'));
       iconRegistry.addSvgIcon('buy-now', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/buy_now.svg'));
@@ -84,6 +88,14 @@ export class ProductComponent implements OnInit, OnDestroy {
             }
           }
         }
+      }
+    });
+
+    this.enabled = this.machineService.getMachineStatus() == MACHINE_STATUS.AVAILABLE;
+    this.machineService.watchMachineStatus()
+    .subscribe({
+      next: (ms) => {
+        this.enabled = ms == MACHINE_STATUS.AVAILABLE;
       }
     });
   }

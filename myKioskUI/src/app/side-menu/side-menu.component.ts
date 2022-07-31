@@ -7,6 +7,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CartComponent } from '../cart/cart.component';
 import { CART_DLG_SIZES } from '../app.constants';
 import { PickupComponent } from '../pickup/pickup.component';
+import { MachineService } from '../services/machine.service';
+import { MACHINE_STATUS } from '../models/wsmessage';
 
 @Component({
   selector: 'app-side-menu',
@@ -17,8 +19,10 @@ export class SideMenuComponent implements OnInit, OnDestroy {
 
   collectionsEnabled: boolean = true;
   productsEnabled: boolean = true;
+  pickupEnabled: boolean = true;
   productsInCart = 0;
   cartBadgeHidden = true;
+  busyVisible = false;
   cartDialogRef?: MatDialogRef<CartComponent>;
   pickupDialogRef?: MatDialogRef<PickupComponent>;
 
@@ -26,7 +30,8 @@ export class SideMenuComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private cartService: CartService,
-    public dialog: MatDialog) {
+    private machineService: MachineService,
+    public dialog: MatDialog,) {
       iconRegistry.addSvgIcon('collections', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/collections.svg'));
       iconRegistry.addSvgIcon('products', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/products.svg'));
       iconRegistry.addSvgIcon('pickup', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/pickup.svg'));
@@ -55,6 +60,17 @@ export class SideMenuComponent implements OnInit, OnDestroy {
       next: (v) => {
         this.productsInCart = v;
         this.cartBadgeHidden = (v == 0);
+      }
+    });
+
+    const ms = this.machineService.getMachineStatus();
+    this.pickupEnabled = ms == MACHINE_STATUS.AVAILABLE;
+    this.busyVisible = ms == MACHINE_STATUS.BUSY;
+    this.machineService.watchMachineStatus()
+    .subscribe({
+      next: (ms) => {
+        this.pickupEnabled = ms == MACHINE_STATUS.AVAILABLE;
+        this.busyVisible = ms == MACHINE_STATUS.BUSY;
       }
     });
   }

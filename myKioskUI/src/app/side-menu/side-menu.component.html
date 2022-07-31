@@ -13,7 +13,7 @@
         </button>
     </div>
     <div fxFlex="15%" class="menu-btn-container">
-        <button mat-raised-button class="menu-btn" (click)="onPickupClick()">
+        <button mat-raised-button class="menu-btn" [disabled]="!pickupEnabled" (click)="onPickupClick()">
             <mat-icon svgIcon="pickup" class="menu-btn-icon"></mat-icon>
             PICKUP
         </button>
@@ -25,5 +25,8 @@
             <mat-icon svgIcon="cart" class="cart-btn-icon"></mat-icon>
         </button>
     </div>
-    <div fxFlex="5%" class="menu-btn-container"></div>
+    <div fxFlex="5%" class="menu-btn-container">
+        <span class="flex-spacer"></span>
+        <span class="busy blink" *ngIf="busyVisible">BUSY!</span>
+    </div>
 </div>

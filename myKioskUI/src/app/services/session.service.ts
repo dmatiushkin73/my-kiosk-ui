@@ -68,11 +68,21 @@ export class SessionService {
     });
     
     fromEvent(document, 'click').pipe(
-      filter(() => this.machineService.getMachineStatus() == MACHINE_STATUS.AVAILABLE && 
+      filter(() => // this.machineService.getMachineStatus() == MACHINE_STATUS.AVAILABLE && 
         this.globalsService.getUiMode() == UI_MODE.VENDING &&
         this.inactivityEnabled),
     ).subscribe(event => {
       this.inactivityCnt = INACTIVITY_TIME;
+    });
+
+    this.machineService.watchMachineStatus()
+    .subscribe({
+      next: (ms) => {
+        if (ms == MACHINE_STATUS.UNAVAILABLE || ms == MACHINE_STATUS.ERROR) {
+          this.inactivityEnabled = false;
+          this.onSessionEnd();
+        }
+      }
     });
   }
 
