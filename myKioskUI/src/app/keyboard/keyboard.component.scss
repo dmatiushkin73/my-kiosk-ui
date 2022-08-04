@@ -1,0 +1,47 @@
+@import '../app.component.scss';
+
+$n-btn-bg: #FFF9C4;
+$l-btn-bg: #FFF9C4;
+$c-btn-bg: #C8E6C9;
+
+.kbd-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: $main-bg;
+    z-index: 1007;
+}
+
+.kbd-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+}
+
+.keyN {
+    background-color: $n-btn-bg;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-right: 7px;
+}
+
+.keyL {
+    background-color: $l-btn-bg;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-right: 7px;
+}
+
+.keyC {
+    background-color: $c-btn-bg;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-right: 7px;
+}

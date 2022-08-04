@@ -1,0 +1,7 @@
+<div class="dbg-console" *ngIf="isVisible" [@flyInOut]>
+    <mat-form-field appearance="outline" class="cmd-form-field">
+        <input matInput placeholder="Enter command" [formControl]="dbgCommand" elemAutofocus>
+    </mat-form-field>
+    <button mat-mini-fab class="dbg-btn" (click)="onExec()"><mat-icon svgIcon="ok"></mat-icon></button>
+    <button mat-mini-fab class="dbg-btn" (click)="onClose()"><mat-icon svgIcon="close"></mat-icon></button>
+</div>

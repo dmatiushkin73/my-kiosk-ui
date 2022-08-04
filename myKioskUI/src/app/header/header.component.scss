@@ -1,0 +1,73 @@
+@import '../app.component.scss';
+
+$h-bg: black;
+$h-color: $primary-color;
+$h-height: 15vh;
+$brand-font-size: 7vh;
+$logo-height: 70%;
+$title-color: #FFFDE7;
+$title-font-size: 5vh;
+$title-pad-right: 10vw;
+$back-btn-size: 10vh;
+
+.toolbar {
+    width: 100%;
+    height: $h-height;
+    background-color: $h-bg;
+    color: $h-color;
+    position: fixed;
+    z-index: 1000;
+}
+
+.brand-wrap {
+    padding-left: 40px;
+    justify-content: left;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.brand-wrap h1 {
+    font-size: $brand-font-size;
+    margin-left: 10px;
+    text-shadow: 2px 2px 2px #F57C00;
+}
+
+.logo-img {
+    height: $logo-height;
+    width: auto;
+}
+
+.title-wrap {
+    justify-content: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.title-wrap h1 {
+    font-size: $title-font-size;
+    color: $title-color;
+    margin: 0;
+    padding: 0;
+    padding-right: $title-pad-right;
+    text-align: center;
+}
+
+.action-wrap {
+    justify-content: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.back-btn {
+    width: $back-btn-size;
+    height: $back-btn-size;
+    background-color: black;
+}
+
+.back-btn-icon {
+    width: $back-btn-size;
+    height: $back-btn-size;
+}

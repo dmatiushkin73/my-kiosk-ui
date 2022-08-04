@@ -1,0 +1,41 @@
+@import '../app.component.scss';
+
+h2 {
+    border-bottom: 1px solid;
+    margin: 0;
+}
+
+.qr-code {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-btn {
+    background-color: $main-btn-color;
+    width: 180px;
+    font-size: 1.2rem;
+}
+
+.menu-btn-icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+}
+
+.mat-raised-button {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+h3 {
+    margin: 8px 0px 0px 0px;
+    font-weight: 500;
+}
+
+h3 span {
+    font-weight: 600;
+}
+
+.countdown {
+    color: $primary-color;
+}

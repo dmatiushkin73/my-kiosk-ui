@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Shopping Cart</h2>
+<mat-dialog-content>
+    <mat-list *ngIf="cartContents">
+        <mat-list-item *ngFor="let item of cartContents">
+            <img matListAvatar src="{{item.image}}" alt="{{item.id}}">
+            <span class="prod-name">{{item.productVariantName}}</span>
+            <span class="flex-spacer"></span>
+            <span class="prod-cost">{{item.totalPrice}}</span>
+            <button mat-mini-fab color="primary" [disabled]="!item.decEnabled" (click)="onMinusClick(item)">-</button>
+            <span class="quantity">{{item.quantity}}</span>
+            <button mat-mini-fab color="primary" [disabled]="!item.incEnabled" (click)="onPlusClick(item)">+</button>
+            <button mat-icon-button (click)="onRemoveClick(item)">
+                <mat-icon svgIcon="trash" class="trash-btn-icon"></mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+    <div class="totals-sect" *ngIf="cartContents">
+        <span class="total-title">Total:</span><span class="total-value">{{total}}</span>
+    </div>
+    <div class="msg-sect" *ngIf="!cartContents">
+        <h4 class="text-center empty">Shopping cart is empty</h4>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button class="menu-btn" *ngIf="cartContents" (click)="onClearClick()">
+        <mat-icon svgIcon="clear" class="menu-btn-icon"></mat-icon>
+        CLEAR CART
+    </button>
+    <button mat-raised-button class="menu-btn" mat-dialog-close>
+        <mat-icon svgIcon="close" class="menu-btn-icon"></mat-icon>
+        CLOSE
+    </button>
+    <button mat-raised-button class="menu-btn checkout-btn" [disabled]="!enabled" *ngIf="cartContents" (click)="onCheckoutClick()">
+        <mat-icon svgIcon="checkout" class="menu-btn-icon"></mat-icon>
+        CHECKOUT
+    </button>
+</mat-dialog-actions>
+
+

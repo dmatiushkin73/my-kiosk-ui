@@ -1,0 +1,15 @@
+<mat-card class="cont-container" *ngIf="isVisible && tiles" [@flyInOutLeft]>
+    <div class="header">
+        <span class="title">Contacts</span>
+        <span class="flex-spacer title"></span>
+        <button mat-button class="close-btn" (click)="onCloseClick()">&times;</button>
+    </div>
+    <mat-card-content>
+        <mat-grid-list cols="12" rowHeight="1.5rem" gutterSize="6px">
+            <mat-grid-tile *ngFor="let tile of tiles" [rowspan]="tile.rows" [colspan]="tile.cols" class="{{tile.classname}}">
+                <mat-icon svgIcon="{{tile.iconName}}" class="tile-icon" *ngIf="tile.withIcon"></mat-icon>
+                <span *ngIf="tile.withText">{{tile.text}}</span>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>

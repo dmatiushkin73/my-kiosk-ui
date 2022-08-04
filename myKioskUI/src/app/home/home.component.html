@@ -1,0 +1,48 @@
+<div class="coverparent main-bg">
+    <div class="home-header">
+        <img src="{{brandDetails.logo}}" alt="{{brandDetails.name}}" class="logo-img" *ngIf="brandDetails">
+        <h1 *ngIf="brandDetails?.showName">{{brandDetails.name}}</h1>
+        <div class="left-banner" *ngIf="leftBanner" [@appear] elemHighlight>
+            <img src="{{leftBanner?.image}}" alt="banner" class="banner-img" routerLink="{{getLeftBannerLink()}}">
+        </div>
+        <div class="right-banner" *ngIf="rightBanner" [@appear] elemHighlight>
+            <img src="{{rightBanner?.image}}" alt="banner" class="banner-img" routerLink="{{getRightBannerLink()}}">
+        </div>
+    </div>
+    <div fxLayout="row" class="home-content">
+        <div fxFlex="20%" class="side-panel"><app-extras></app-extras></div>
+        <div fxFlex="60%">
+            <div fxLayout="column" class="home-content">
+                <mat-card fxFlex="50%" class="carousel1" *ngIf="topSlider" [@appear]>
+                    <h4>{{topSlider?.title}}</h4>
+                    <div class="slider-wrap" *ngIf="loaded">
+                        <carousel [cellsToShow]="3" [margin]="15" style="height: 100%;">
+                            <div class="carousel-cell" *ngFor="let id of topSlider.ids" elemHighlight routerLink="{{getTopSliderLink(id)}}">
+                                <img src="{{ getTopSliderImage(id) }}" alt="{{id}}" style="object-fit: cover;">
+                                <span class="slide-title text-center">{{ getTopSliderTitle(id) }}</span>
+                            </div>
+                        </carousel>
+                    </div>
+                </mat-card>
+                <div fxFlex="50%" class="spinner-wrap" *ngIf="!loaded">
+                    <mat-progress-spinner color="accent" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                <mat-card fxFlex="50%" class="carousel2" *ngIf="bottomSlider" [@appear]>
+                    <h4>{{bottomSlider?.title}}</h4>
+                    <div class="slider-wrap" *ngIf="loaded">
+                        <carousel [cellsToShow]="3" [margin]="15" style="height: 100%;">
+                            <div class="carousel-cell" *ngFor="let id of bottomSlider.ids" elemHighlight routerLink="{{getBottomSliderLink(id)}}">
+                                <img src="{{ getBottomSliderImage(id) }}" alt="{{id}}" style="object-fit: cover;">
+                                <span class="slide-title text-center">{{ getBottomSliderTitle(id) }}</span>
+                            </div>
+                        </carousel>
+                    </div>
+                </mat-card>
+                <div fxFlex="50%" class=spinner-wrap *ngIf="!loaded">
+                    <mat-progress-spinner color="accent" mode="indeterminate"></mat-progress-spinner>
+                </div>
+            </div>
+        </div>
+        <div fxFlex="20%" class="side-panel"><app-side-menu></app-side-menu></div>
+    </div>
+</div>

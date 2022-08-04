@@ -1,0 +1,51 @@
+@import '../app.component.scss';
+
+$cont-bg: #283593;
+$cont-color: white;
+
+.cont-container {
+    width: 400px;
+    max-width: 500px;
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+    z-index: 105;
+    background-color: $cont-bg;
+    color: $cont-color;
+    padding: 10px;
+}
+
+.header {
+    display: flex;
+    margin-bottom: 6px;
+}
+
+.title {
+    border-bottom: 1px solid;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.tile-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.tile-dep-title {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.tile-dep-props {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.close-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0;
+    min-width: 36px;
+}

@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+$primary-color: #FFB74D;
+$main-bg: #FAFAFA;
+$errmsg-bg: #E91E63;
+$msg-bg: #673AB7;
+
+html, body {
+    height: 100%;
+    background-color: black;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.errmsg-panel {
+    background-color: $errmsg-bg;
+    color: white;
+}
+
+.msg-panel {
+    background-color: $msg-bg;
+    color: white;
+}
+
+.highlight {
+    border: 2px solid $primary-color;
+    z-index: 10001;
+    transform: scale(1.02);
+}
+
+.mat-fab .mat-button-wrapper {
+    padding: 0 !important;
+}
+
+.mat-dialog-container {
+    background-color: $main-bg;
+}
+
+.mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+    padding: 0 !important;
+}
+
+.flex-spacer {
+    flex: 1 1 auto;
+}

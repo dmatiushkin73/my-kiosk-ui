@@ -1,0 +1,25 @@
+<div class="coverparent main-bg">
+    <app-header></app-header>
+    <div fxLayout="row" class="coverparent content">
+        <div fxFlex="5%" class="compensator">
+            <app-extras></app-extras>
+        </div>
+        <div fxFlex="75%" class="collections-wrap">
+            <mat-grid-list cols="4" gutterSize="10px">
+                <mat-grid-tile *ngFor="let collection of collections" elemHighlight [@appear]>
+                    <mat-card fxLayout="column" [routerLink]="['/collections', collection.id]">
+                        <div fxFlex="85%" class="tile-img-wrap">
+                            <img src="{{collection.image}}" alt="{{collection.name}}">
+                        </div>
+                        <div fxFlex="15%">
+                            <h4 class="tile-title">{{collection.name}}</h4>
+                        </div>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+        <div fxFlex="20%" class="compensator">
+            <app-side-menu></app-side-menu>
+        </div>
+    </div>
+</div>

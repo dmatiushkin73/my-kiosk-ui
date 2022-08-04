@@ -1,0 +1,8 @@
+<div class="kbd-container" *ngIf="isVisible && layoutManager" [@flyInOut]>
+    <div class="kbd-row" *ngFor="let row of layoutManager.getKeys()">
+        <button mat-raised-button *ngFor="let k of row" class="{{k.getClassName()}}" (click)="onKeyClicked(k)">
+            <mat-icon svgIcon="{{k.getValue(layoutManager.isCapsOn())}}" *ngIf="k.useIcon()"></mat-icon>
+            <span *ngIf="!k.useIcon()">{{k.getValue(layoutManager.isCapsOn())}}</span>
+        </button>
+    </div>
+</div>
