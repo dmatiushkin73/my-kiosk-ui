@@ -19,7 +19,9 @@ export enum PICKUP_STATUS {
   FULFILLED = 'FULFILLED'
 }
 
-export const HEARTBEAT_TIMEOUT_MS = 60000;
+export const KEEPALIVE_INTERVAL = 10;
+export const KEEPALIVE_TIMEOUT = 10; // in 2 sec intervals, i.e. 20 seconds
+
 export const DISPLAY_ID = 'displayId';
 
 export enum UI_MODE {

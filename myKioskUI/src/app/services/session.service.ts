@@ -78,7 +78,7 @@ export class SessionService {
     this.machineService.watchMachineStatus()
     .subscribe({
       next: (ms) => {
-        if (ms == MACHINE_STATUS.UNAVAILABLE || ms == MACHINE_STATUS.ERROR) {
+        if (ms == MACHINE_STATUS.UNAVAILABLE || ms == MACHINE_STATUS.ERROR || ms == MACHINE_STATUS.TIMEOUT) {
           this.inactivityEnabled = false;
           this.onSessionEnd();
         }

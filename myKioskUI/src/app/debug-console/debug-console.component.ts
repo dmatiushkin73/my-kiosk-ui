@@ -7,6 +7,7 @@ import { GlobalsService } from '../services/globals.service';
 import { WebsocketService } from '../services/websocket.service';
 import { INACTIVITY_TIME } from '../app.constants';
 import { WsMsgType } from '../models/wsmessage';
+import { MachineService } from '../services/machine.service';
 
 @Component({
   selector: 'app-debug-console',
@@ -24,7 +25,8 @@ export class DebugConsoleComponent implements OnInit {
   constructor(private iconRegistry: MatIconRegistry,
       private sanitizer: DomSanitizer,
       private globalsService: GlobalsService,
-      private wsService: WebsocketService) {
+      private wsService: WebsocketService,
+      private machineSercice: MachineService) {
     iconRegistry.addSvgIcon('close', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/close.svg'));
     iconRegistry.addSvgIcon('ok', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/check.svg'));
     this.dbgCommand = new FormControl('', []);
@@ -83,6 +85,10 @@ export class DebugConsoleComponent implements OnInit {
               status: items[2]
             }]);
           }, 1000);
+        }
+        else if (itnum >=2 && items[1] == "tm") {
+          console.log("Debug command: websocket timeout");
+          this.machineSercice.stopKeepAliveSimulation();
         }
         else {
           console.log("Unknown debug command - " + cmd);

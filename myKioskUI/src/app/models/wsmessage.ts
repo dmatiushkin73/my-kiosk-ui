@@ -27,4 +27,5 @@ export enum DISPENSING_STATUS {
     UNAVAILABLE = 'unavailable', // machine is unavailable for users
     ERROR = 'error',             // machine is not usable at all
     SWUPDATE = 'sw-update',      // software update was requested and machine is about to execute update procedure
+    TIMEOUT = "timeout"          // internal status, can't come from Websocket, means keepalive timeout expired
   }
